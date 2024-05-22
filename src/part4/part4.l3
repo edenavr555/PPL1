@@ -1,9 +1,13 @@
 #lang racket/base
 
 (define append
-    (lambda (l1 l2)
-    @todo
-))
+  (lambda (l1 l2)
+    (if (eq? l1 '())
+        l2
+        (cons (car l1) (append (cdr l1) l2)))))
+
+(append '(1 2) '(1 4))
+
 
 (define reverse
     (lambda (l)
