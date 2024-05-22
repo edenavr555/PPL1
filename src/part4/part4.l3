@@ -1,5 +1,12 @@
 #lang racket/base
 
+@QUESTION 1:
+
+; Signature:
+; Type:
+; Purpose:
+; Pre-conditions:
+; Tests:
 (define append
   (lambda (l1 l2)
     (if (eq? l1 '())
@@ -8,13 +15,51 @@
 
 (append '(1 2) '(1 4))
 
+@QUESTION 2:
 
 (define reverse
     (lambda (l)
-    @todo
-))
+    (if(eq? l '())
+      l
+      (append (reverse (cdr l)) (cons (car l) '())))))
+
+@QUESTION 3:
 
 (define duplicate-items
-    (lambda (lst, dup-count)
-    @todo    
+    (lambda (lst dup-count)
+      (makeDupList lst dup-count 0)  
 ))
+
+(define length
+  (lambda (lst)
+    (if (eq? lst '())
+        0
+        (+ 1 (length (cdr lst))))))
+
+(define nth
+  (lambda (lst n)
+    (if (eq? lst '())
+        '()
+        (if (= n 0)
+            (car lst)
+            (nth (cdr lst) (- n 1))))))
+
+(define modulo
+  (lambda (a b)
+    (if (< a b)
+      a
+    (modulo (- a b) b))))
+
+
+(define duplicate 
+  (lambda (x i)
+    (if (eq? 0 i)
+        '()
+        (cons x (duplicate x (- i 1))))))
+
+(define makeDupList 
+  (lambda (l1 l2 i)
+   (if (eq? l1 '())
+      l1
+    (append (duplicate (car l1) (nth l2 i)) (makeDupList (cdr l1) l2 (modulo (+ i 1) (length l2)))))))
+
